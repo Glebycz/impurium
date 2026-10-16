@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imperium Atlas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="game">
+  <header class="resource-header">
+    <div class="panel-title">
+      <span>РЕСУРСЫ</span>
+      <small>RESOURCES</small>
+    </div>
+    <div class="resources-grid">
+      <div class="resource-card">
+        <img id="goldIcon" alt="">
+        <b id="gold">1000</b>
+        <span>ЗОЛОТО</span>
+      </div>
+      <div class="resource-card">
+        <img id="foodIcon" alt="">
+        <b id="food">500</b>
+        <span>ПШЕНИЦА</span>
+      </div>
+      <div class="resource-card">
+        <img id="woodIcon" alt="">
+        <b id="wood">350</b>
+        <span>ДРЕВЕСИНА</span>
+      </div>
+      <div class="resource-card">
+        <img id="stoneIcon" alt="">
+        <b id="stone">250</b>
+        <span>КАМЕНЬ</span>
+      </div>
+      <div class="resource-card">
+        <img id="ironIcon" alt="">
+        <b id="iron">100</b>
+        <span>ЖЕЛЕЗО</span>
+      </div>
+      <div class="resource-card">
+        <img id="populationIcon" alt="">
+        <b id="population">50</b>
+        <span>НАСЕЛЕНИЕ</span>
+      </div>
+      <div class="resource-card">
+        <img id="happinessIcon" alt="">
+        <b id="happiness">80%</b>
+        <span>СЧАСТЬЕ</span>
+      </div>
+      <div class="resource-card">
+        <img id="armyIcon" alt="">
+        <b id="armyPower">20</b>
+        <span>АРМИЯ</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="building-panel">
+    <div class="panel-title">
+      <span>ПОСТРОЙКИ</span>
+      <small>BUILDINGS</small>
+    </div>
+    <div class="building-list">
+      <button class="building-button" data-building="house" type="button">
+        <img id="houseAsset" alt="">
+        <span>ДОМ</span>
+        <small>+5 жителей</small>
+      </button>
+      <button class="building-button" data-building="farm" type="button">
+        <img id="farmAsset" alt="">
+        <span>ФЕРМА</span>
+        <small>+30 еды</small>
+      </button>
+      <button class="building-button" data-building="sawmill" type="button">
+        <img id="sawmillAsset" alt="">
+        <span>ЛЕСОПИЛКА</span>
+        <small>+25 дерева</small>
+      </button>
+      <button class="building-button" data-building="quarry" type="button">
+        <img id="quarryAsset" alt="">
+        <span>КАМЕННЫЙ КАРЬЕР</span>
+        <small>+20 камня</small>
+      </button>
+      <button class="building-button" data-building="market" type="button">
+        <img id="marketAsset" alt="">
+        <span>РЫНОК</span>
+        <small>+50 золота</small>
+      </button>
+      <button class="building-button" data-building="forum" type="button">
+        <img id="forumAsset" alt="">
+        <span>ФОРУМ</span>
+        <small>+5 счастья</small>
+      </button>
+      <button class="building-button" data-building="aqueduct" type="button">
+        <img id="aqueductAsset" alt="">
+        <span>АКВЕДУК</span>
+        <small>+10 счастья</small>
+      </button>
+      <button class="building-button" data-building="barracks" type="button">
+        <img id="barracksAsset" alt="">
+        <span>КАЗАРМЫ</span>
+        <small>Обучение армии</small>
+      </button>
+      <button class="building-button" data-building="forge" type="button">
+        <img id="forgeAsset" alt="">
+        <span>КУЗНИЦА</span>
+        <small>Военное производство</small>
+      </button>
+      <button class="building-button" data-building="wall" type="button">
+        <img id="wallAsset" alt="">
+        <span>ГОРОДСКИЕ ВОРОТА</span>
+        <small>+ защита</small>
+      </button>
+    </div>
+  </section>
+
+  <main class="game-main">
+    <section class="map-section">
+      <div class="panel-title map-title">
+        <span id="viewTitle">ГОРОД</span>
+        <small id="viewSubtitle">ROMAN CITY</small>
+      </div>
+      <div class="view-switch">
+        <button id="cityButton" class="active" type="button">ГОРОД</button>
+        <button id="worldButton" type="button">КАРТА</button>
+      </div>
+      <div id="cityView" class="game-view active">
+        <div id="cityGrid"></div>
+      </div>
+      <div id="worldView" class="game-view">
+        <div id="worldGrid"></div>
+      </div>
+    </section>
+
+    <aside class="side-panel">
+      <div class="side-buttons">
+        <button class="menu-button active" data-menu="cityMenu" type="button">ГОРОД</button>
+        <button class="menu-button" data-menu="armyMenu" type="button">АРМИЯ</button>
+        <button class="menu-button" data-menu="mapMenu" type="button">КАРТА</button>
+        <button class="menu-button" data-menu="techMenu" type="button">ТЕХНОЛОГИИ</button>
+        <button class="menu-button" data-menu="diplomacyMenu" type="button">ДИПЛОМАТИЯ</button>
+      </div>
+
+      <div id="cityMenu" class="menu-content active">
+        <h3>ГОРОД</h3>
+        <div class="stat-box">
+          <span>Население</span>
+          <b id="cityPopulation">50</b>
+        </div>
+        <div class="stat-box">
+          <span>Счастье</span>
+          <b id="cityHappiness">80%</b>
+        </div>
+        <div class="stat-box">
+          <span>Престиж</span>
+          <b id="prestige">10</b>
+        </div>
+        <div class="goal-box">
+          <h4>ЦЕЛИ ИМПЕРИИ</h4>
+          <div class="goal-row" id="goalConquestRow">
+            <span>Завоевание</span>
+            <b id="goalConquest">0 / 3</b>
+          </div>
+          <div class="goal-row" id="goalPrestigeRow">
+            <span>Престиж</span>
+            <b id="goalPrestige">10 / 80</b>
+          </div>
+          <div class="goal-row" id="goalPopulationRow">
+            <span>Население</span>
+            <b id="goalPopulation">50 / 100</b>
+          </div>
+          <div class="goal-row" id="goalHappinessRow">
+            <span>Счастье</span>
+            <b id="goalHappiness">80 / 75</b>
+          </div>
+          <div class="goal-row danger" id="goalRevoltRow">
+            <span>Восстание</span>
+            <b id="goalRevolt">0 / 3 дня</b>
+          </div>
+          <p class="hint">Победа: покори все 3 вражеских города или набери величие (престиж, народ и счастье). Поражение: город опустеет, 3 дня счастья 0%, или легион погибнет в бою.</p>
+        </div>
+        <p class="hint">Выберите здание сверху, затем нажмите на свободную клетку города.</p>
+      </div>
+
+      <div id="armyMenu" class="menu-content">
+        <h3>ЛЕГИОН</h3>
+        <div class="legion-card">
+          <div class="legion-name">
+            <span>SPQR</span>
+            <strong>I LEGIO VICTRIX</strong>
+          </div>
+          <div class="army-stat">
+            Легионеры
+            <b id="legionaries">20</b>
+          </div>
+          <button id="trainLegionary" type="button">ОБУЧИТЬ ЛЕГИОНЕРА</button>
+          <div class="army-stat">
+            Лучники
+            <b id="archers">0</b>
+          </div>
+          <button id="trainArcher" type="button">ОБУЧИТЬ ЛУЧНИКА</button>
+          <div class="army-stat">
+            Кавалерия
+            <b id="cavalry">0</b>
+          </div>
+          <button id="trainCavalry" type="button">ОБУЧИТЬ КАВАЛЕРИЮ</button>
+        </div>
+        <div class="general-card">
+          <img id="generalImage" alt="">
+          <div>
+            <h4>ГЕНЕРАЛ</h4>
+            <strong>Marcus Valerius</strong>
+            <p>Атака: 8</p>
+            <p>Защита: 7</p>
+            <p>Лидерство: 9</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="mapMenu" class="menu-content">
+        <h3>ТЕРРИТОРИИ</h3>
+        <div class="stat-box">
+          <span>Владения</span>
+          <b id="territories">1</b>
+        </div>
+        <div class="stat-box">
+          <span>Победы</span>
+          <b id="victories">0</b>
+        </div>
+        <p class="hint">На карте нажмите на вражеский город, чтобы начать атаку.</p>
+      </div>
+
+      <div id="techMenu" class="menu-content">
+        <h3>ТЕХНОЛОГИИ</h3>
+        <button class="tech-button" data-tech="agriculture" type="button">
+          Улучшенное земледелие
+          <small>Фермы +15 еды</small>
+          <b>150 золота</b>
+        </button>
+        <button class="tech-button" data-tech="weapons" type="button">
+          Улучшенное оружие
+          <small>Армия +20% силы</small>
+          <b>250 золота</b>
+        </button>
+        <button class="tech-button" data-tech="roads" type="button">
+          Римские дороги
+          <small>Торговля +25 золота</small>
+          <b>200 золота</b>
+        </button>
+      </div>
+
+      <div id="diplomacyMenu" class="menu-content">
+        <h3>ДИПЛОМАТИЯ</h3>
+        <button class="diplomacy-action" id="tradeAction" type="button">ТОРГОВЛЯ</button>
+        <button class="diplomacy-action" id="peaceAction" type="button">ПРЕДЛОЖИТЬ МИР</button>
+        <button class="diplomacy-action" id="allianceAction" type="button">СОЮЗ</button>
+      </div>
+    </aside>
+  </main>
+
+  <section class="bottom-panel">
+    <div class="legion-info">
+      <img id="legionImage" alt="">
+      <div>
+        <h2>I LEGIO VICTRIX</h2>
+        <div class="progress-bar">
+          <div id="armyBar"></div>
+        </div>
+        <span id="armyText">Солдаты: 20</span>
+      </div>
+    </div>
+    <div class="events-section">
+      <div class="panel-title">
+        <span>СОБЫТИЯ</span>
+        <small>EVENTS</small>
+      </div>
+      <div id="eventLog" class="event-log"></div>
+    </div>
+    <div class="next-day-section">
+      <div class="day-number">
+        ДЕНЬ
+        <strong id="day">1</strong>
+      </div>
+      <button id="nextDay" type="button">СЛЕДУЮЩИЙ ДЕНЬ</button>
+    </div>
+  </section>
+
+  <div id="battleModal" class="modal">
+    <div class="battle-window">
+      <button id="closeBattle" class="close" type="button">×</button>
+      <h2>СРАЖЕНИЕ</h2>
+      <p id="battleEnemyName">Вражеская армия</p>
+      <div class="battle-armies">
+        <div>
+          <h3>РИМ</h3>
+          <div class="battle-icon">R</div>
+          <strong id="playerPower">20</strong>
+          <small>СИЛА АРМИИ</small>
+        </div>
+        <div class="vs">VS</div>
+        <div>
+          <h3>ВРАГ</h3>
+          <div class="battle-icon">X</div>
+          <strong id="enemyPower">30</strong>
+          <small>СИЛА ВРАГА</small>
+        </div>
+      </div>
+      <button id="fightButton" type="button">НАЧАТЬ БИТВУ</button>
+      <div id="battleResult"></div>
+    </div>
+  </div>
+
+  <div id="endModal" class="modal">
+    <div class="end-window">
+      <p class="end-kicker" id="endKicker">IMPERIUM</p>
+      <h2 id="endTitle">Конец партии</h2>
+      <p id="endText"></p>
+      <ul class="end-stats">
+        <li>День <b id="endDay">1</b></li>
+        <li>Престиж <b id="endPrestige">10</b></li>
+        <li>Владения <b id="endTerritories">1</b></li>
+        <li>Победы <b id="endVictories">0</b></li>
+      </ul>
+      <button id="restartGame" type="button">НАЧАТЬ ЗАНОВО</button>
+    </div>
+  </div>
+
+  <div id="musicDock" class="music-dock">
+    <div class="suno-clip">
+      <span id="musicTrackLabel" class="music-track-label">ГОРОД</span>
+      <iframe id="sunoPlayer" title="Suno player" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+    <button id="musicToggle" class="music-toggle" type="button" aria-pressed="true">МУЗЫКА ВКЛ</button>
+  </div>
+  <div id="notification"></div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
